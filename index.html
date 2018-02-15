@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Inputs</title>
+
+	<link type="text/css" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+	<link type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+	<style type="text/css">
+	<!--
+	body {
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 400;
+	}
+
+	div.wrapper {
+		display: block;
+		margin: 0 auto;
+		width: 970px;
+	}
+
+	div.wrapper > section {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	div.wrapper > section:first-of-type {
+		width: 60%;
+	}
+
+	div.wrapper > section:last-of-type {
+		margin-left: 9%;
+		width: 30%;
+	}
+
+	ul#bufferSet {
+		list-style: none;
+		padding-left: 0;
+	}
+
+	ul#bufferSet li {
+		border: 2px solid #222;
+		border-top-width: 1.5rem;
+		display: inline-block;
+		padding: 0.75rem 1rem;
+		position: relative;
+	}
+
+	ul#bufferSet li > span.counter {
+		color: white;
+		display: block;
+		font-size: 0.75rem;
+		font-weight: 700;
+		left: 0;
+		position: absolute;
+		text-align: center;
+		top: -1.15rem;
+		width: 100%;
+	}
+
+	.fas {
+		margin-right: -1px;
+		width: 16px !important;
+	}
+
+	-->
+	</style>
+</head>
+<body>
+
+<!--
+fa-arrow-up
+fa-arrow-right
+fa-arrow-down
+fa-arrow-left
+fa-hand-rock
+fa-paw
+fa-expand
+-->
+<div class="wrapper">
+	<h1>Input Buffer Prototype</h1>
+	<p>This is a prototype to test an input buffer system seen in fighting games, etc. The
+		idea is every update frame, the input is captured and stored. The last X-number (in our
+		example, 10) inputs are saved as a cache in a buffer set to check for move patterns.</p>
+
+	<p>Every update frame after the buffer set has been updated with the latest input, it is
+		run against a set of move patterns to check for a match. One of two scenarios will
+		occur:</p>
+
+	<ul>
+		<li>If a pattern is detected, it will fire that move (based on priority) and clear out the buffer set.</li>
+		<li>If no pattern is detected, it will continue to the next frame.</li>
+	</ul>
+
+	<p><strong>Note: for this demo, the update loop is set as a 100ms interval (frame) to provide a slow motion
+		understanding of what is happening at full speed (30-60 fps)</strong></p>
+</div>
+
+
+<div class="wrapper">
+	<section>
+		<ul id="bufferSet">
+			<li>
+				<span class="counter">1</span>
+				<span class="icon"></span>
+			</li>
+			<li>
+				<span class="counter">2</span>
+				<span class="icon"></span>
+			</li>
+			<li>
+				<span class="counter">3</span>
+				<span class="icon"></span>
+			</li>
+			<li>
+				<span class="counter">4</span>
+				<span class="icon"></span>
+			</li>
+			<li>
+				<span class="counter">5</span>
+				<span class="icon"></span>
+			</li>
+			<li>
+				<span class="counter">6</span>
+				<span class="icon"></span>
+			</li>
+			<li>
+				<span class="counter">7</span>
+				<span class="icon"></span>
+			</li>
+			<li>
+				<span class="counter">8</span>
+				<span class="icon"></span>
+			</li>
+			<li>
+				<span class="counter">9</span>
+				<span class="icon"></span>
+			</li>
+			<li>
+				<span class="counter">10</span>
+				<span class="icon"></span>
+			</li>
+		</ul>
+
+		<h3 id="move"></h3>
+	</section>
+
+	<section>
+		<h2>Inputs</h2>
+		<ul>
+			<li><strong>w</strong> = up</li>
+			<li><strong>s</strong> = down</li>
+			<li><strong>a</strong> = left</li>
+			<li><strong>d</strong> = right</li>
+			<li><strong>p</strong> = punch</li>
+			<li><strong>k</strong> = kick</li>
+		</ul>
+
+		<h2>Moves (priority order)</h2>
+		<ol>
+			<li><strong>Super Punch</strong> = s d s d p</li>
+			<li><strong>Ultra Kick</strong> = s a s a k</li>
+			<li><strong>Fireball</strong> = s d p</li>
+			<li><strong>Spin Kick</strong> = s a k</li>
+			<li><strong>Punch</strong> = p</li>
+			<li><strong>Kick</strong> = k</li>
+		</ol>
+	</section>
+</div>
+
+
+<script type="text/javascript" src="input.js"></script>
+
+</body>
+</html>
